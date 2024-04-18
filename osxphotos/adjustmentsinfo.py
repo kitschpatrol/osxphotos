@@ -115,6 +115,9 @@ class AdjustmentsInfo:
             return self._adjustments["adjustments"] if self._adjustments else []
         except KeyError:
             return []
+        except TypeError:
+            # adjustments key is missing
+            return []
 
     @property
     def adj_metadata(self):
@@ -122,6 +125,9 @@ class AdjustmentsInfo:
         try:
             return self._adjustments["metadata"] if self._adjustments else None
         except KeyError:
+            return None
+        except TypeError:
+            # metadata key is missing
             return None
 
     @property
@@ -143,6 +149,9 @@ class AdjustmentsInfo:
             return self._adjustments["formatVersion"] if self._adjustments else None
         except KeyError:
             return None
+        except TypeError:
+            # formatVersion key is missing
+            return None
 
     @property
     def adj_version_info(self):
@@ -150,6 +159,9 @@ class AdjustmentsInfo:
         try:
             return self._adjustments["versionInfo"] if self._adjustments else None
         except KeyError:
+            return None
+        except TypeError:
+            # versionInfo key is missing
             return None
 
     def asdict(self):
